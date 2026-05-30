@@ -1,33 +1,1196 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=(device-width), initial-scale=1.0">
-    <title>Document</title>
-     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-</head>
-<body>
-    <div>
-        <!-- Ini Navbar -->
-       <nav class="navbar bg-body-tertiary">
-  <div class="container-fluid">
-    <a class="navbar-brand">Navbar</a>
-    <form class="d-flex" role="search">
-      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-      <button class="btn btn-outline-success" type="submit">Search</button>
-    </form>
-  </div>
-</nav>
-       <!-- Ini Navbar End -->
-    </div>
+<!doctype html>
+<html lang="id">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Cetrak Cetrek Lampu - Smart Home</title>
+        <style>
+            :root {
+                --bg-night: #0a0a1a;
+                --bg-card: #1a1a2e;
+                --text-light: #e0e0e0;
+                --text-muted: #a0a0b8;
+                --golden: #ffc850;
+                --golden-glow: #ffaa20;
+                --switch-off: #3a3a50;
+                --switch-on: #4ade80;
+                --roof-keluarga: #e8734a;
+                --roof-makan: #e0495a;
+                --roof-tidur: #7c6faa;
+                --roof-tamu: #4a9e8e;
+                --card-keluarga: #1e1a24;
+                --card-makan: #1e1820;
+                --card-tidur: #1a1c28;
+                --card-tamu: #182420;
+            }
 
-    <div class="card" style="width: 18rem;">
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item">An item</li>
-    <li class="list-group-item">A second item</li>
-    <li class="list-group-item">A third item</li>
-  </ul>
-</div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-</body>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                background: var(--bg-night);
+                background-image:
+                    radial-gradient(
+                        1px 1px at 10% 15%,
+                        rgba(255, 255, 255, 0.6),
+                        transparent
+                    ),
+                    radial-gradient(
+                        1px 1px at 25% 8%,
+                        rgba(255, 255, 255, 0.5),
+                        transparent
+                    ),
+                    radial-gradient(
+                        1.5px 1.5px at 40% 20%,
+                        rgba(255, 255, 255, 0.7),
+                        transparent
+                    ),
+                    radial-gradient(
+                        1px 1px at 55% 5%,
+                        rgba(255, 255, 255, 0.4),
+                        transparent
+                    ),
+                    radial-gradient(
+                        1.5px 1.5px at 70% 18%,
+                        rgba(255, 255, 255, 0.6),
+                        transparent
+                    ),
+                    radial-gradient(
+                        1px 1px at 85% 10%,
+                        rgba(255, 255, 255, 0.5),
+                        transparent
+                    ),
+                    radial-gradient(
+                        1px 1px at 15% 30%,
+                        rgba(255, 255, 255, 0.3),
+                        transparent
+                    ),
+                    radial-gradient(
+                        2px 2px at 60% 35%,
+                        rgba(255, 255, 255, 0.5),
+                        transparent
+                    ),
+                    radial-gradient(
+                        1px 1px at 90% 28%,
+                        rgba(255, 255, 255, 0.4),
+                        transparent
+                    ),
+                    radial-gradient(
+                        1px 1px at 33% 42%,
+                        rgba(255, 255, 255, 0.35),
+                        transparent
+                    ),
+                    radial-gradient(
+                        1.5px 1.5px at 78% 45%,
+                        rgba(255, 255, 255, 0.5),
+                        transparent
+                    ),
+                    radial-gradient(
+                        1px 1px at 5% 55%,
+                        rgba(255, 255, 255, 0.3),
+                        transparent
+                    ),
+                    radial-gradient(
+                        1px 1px at 48% 12%,
+                        rgba(255, 255, 255, 0.55),
+                        transparent
+                    ),
+                    radial-gradient(
+                        1px 1px at 92% 7%,
+                        rgba(255, 255, 255, 0.45),
+                        transparent
+                    ),
+                    radial-gradient(
+                        1.5px 1.5px at 20% 65%,
+                        rgba(255, 255, 255, 0.3),
+                        transparent
+                    ),
+                    radial-gradient(
+                        1px 1px at 65% 70%,
+                        rgba(255, 255, 255, 0.25),
+                        transparent
+                    );
+                min-height: 100vh;
+                font-family:
+                    "Segoe UI",
+                    "Poppins",
+                    system-ui,
+                    -apple-system,
+                    sans-serif;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding: 20px;
+                overflow-x: hidden;
+            }
+
+            /* ===== MOON ===== */
+            .moon {
+                position: fixed;
+                top: 30px;
+                right: 60px;
+                width: 70px;
+                height: 70px;
+                background: radial-gradient(
+                    circle at 35% 35%,
+                    #fff8e7,
+                    #ffe4b5,
+                    #ffd89b
+                );
+                border-radius: 50%;
+                box-shadow:
+                    0 0 30px 15px rgba(255, 220, 150, 0.35),
+                    0 0 80px 40px rgba(255, 200, 120, 0.18),
+                    0 0 140px 70px rgba(255, 180, 100, 0.08);
+                z-index: 0;
+                pointer-events: none;
+                animation: moonGlow 4s ease-in-out infinite;
+            }
+            @keyframes moonGlow {
+                0%,
+                100% {
+                    box-shadow:
+                        0 0 30px 15px rgba(255, 220, 150, 0.35),
+                        0 0 80px 40px rgba(255, 200, 120, 0.18),
+                        0 0 140px 70px rgba(255, 180, 100, 0.08);
+                }
+                50% {
+                    box-shadow:
+                        0 0 40px 20px rgba(255, 220, 150, 0.45),
+                        0 0 90px 48px rgba(255, 200, 120, 0.24),
+                        0 0 150px 78px rgba(255, 180, 100, 0.12);
+                }
+            }
+
+            /* ===== MAIN CONTAINER ===== */
+            .main-container {
+                position: relative;
+                z-index: 1;
+                width: 100%;
+                max-width: 1100px;
+            }
+
+            /* ===== HEADER ===== */
+            .header {
+                text-align: center;
+                margin-bottom: 30px;
+            }
+            .header h1 {
+                font-size: 2.6rem;
+                font-weight: 800;
+                letter-spacing: 2px;
+                background: linear-gradient(
+                    180deg,
+                    #ffffff 0%,
+                    #ffd89b 50%,
+                    #ffb347 100%
+                );
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+                filter: drop-shadow(0 0 18px rgba(255, 180, 60, 0.5));
+                margin-bottom: 4px;
+            }
+            .header .subtitle {
+                font-size: 0.95rem;
+                color: #8899bb;
+                letter-spacing: 4px;
+                text-transform: uppercase;
+            }
+
+            /* ===== ROOMS GRID ===== */
+            .rooms-grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: auto auto;
+                gap: 24px;
+            }
+            @media (max-width: 768px) {
+                .rooms-grid {
+                    grid-template-columns: 1fr;
+                    gap: 20px;
+                }
+                .header h1 {
+                    font-size: 1.8rem;
+                }
+                .moon {
+                    width: 45px;
+                    height: 45px;
+                    top: 15px;
+                    right: 20px;
+                }
+            }
+
+            /* ===== ROOM CARD ===== */
+            .room-card {
+                position: relative;
+                background: var(--bg-card);
+                border-radius: 20px;
+                padding: 0;
+                overflow: visible;
+                box-shadow:
+                    0 8px 32px rgba(0, 0, 0, 0.5),
+                    0 2px 8px rgba(0, 0, 0, 0.3);
+                transition: all 0.5s ease;
+                display: flex;
+                flex-direction: column;
+            }
+            .room-card:hover {
+                transform: translateY(-4px);
+                box-shadow:
+                    0 16px 40px rgba(0, 0, 0, 0.55),
+                    0 4px 16px rgba(0, 0, 0, 0.35);
+            }
+
+            /* Roof triangle */
+            .roof {
+                position: absolute;
+                top: -38px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 0;
+                height: 0;
+                border-left: 55px solid transparent;
+                border-right: 55px solid transparent;
+                border-bottom: 42px solid var(--roof-color, #888);
+                filter: drop-shadow(0 -2px 6px rgba(0, 0, 0, 0.4));
+                z-index: 2;
+                transition: border-bottom-color 0.5s ease;
+            }
+            .room-card.keluarga {
+                --roof-color: var(--roof-keluarga);
+                background: var(--card-keluarga);
+            }
+            .room-card.makan {
+                --roof-color: var(--roof-makan);
+                background: var(--card-makan);
+            }
+            .room-card.tidur {
+                --roof-color: var(--roof-tidur);
+                background: var(--card-tidur);
+            }
+            .room-card.tamu {
+                --roof-color: var(--roof-tamu);
+                background: var(--card-tamu);
+            }
+
+            /* Roof chimney accent */
+            .roof::after {
+                content: "";
+                position: absolute;
+                top: -16px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 14px;
+                height: 22px;
+                background: #5c4a3a;
+                border-radius: 4px 4px 0 0;
+                z-index: -1;
+                opacity: 0.7;
+            }
+
+            /* Room body */
+            .room-body {
+                padding: 20px 18px 18px;
+                display: flex;
+                flex-direction: column;
+                gap: 14px;
+                border-radius: 20px;
+                position: relative;
+                z-index: 1;
+                transition: background 0.6s ease;
+            }
+            /* Warm glow overlay when lights are on */
+            .room-body::before {
+                content: "";
+                position: absolute;
+                inset: 0;
+                border-radius: 20px;
+                background: radial-gradient(
+                    ellipse at center top,
+                    rgba(255, 180, 60, 0.08) 0%,
+                    transparent 70%
+                );
+                opacity: 0;
+                transition: opacity 0.7s ease;
+                pointer-events: none;
+                z-index: 0;
+            }
+            .room-card.has-light .room-body::before {
+                opacity: 1;
+            }
+
+            .room-name {
+                font-size: 1.25rem;
+                font-weight: 700;
+                color: #e8e8f0;
+                text-align: center;
+                letter-spacing: 1px;
+                position: relative;
+                z-index: 1;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 8px;
+            }
+            .room-icon {
+                font-size: 1.5rem;
+            }
+
+            /* ===== BULBS AREA ===== */
+            .bulbs-area {
+                display: flex;
+                justify-content: center;
+                align-items: flex-end;
+                gap: 22px;
+                flex-wrap: wrap;
+                padding: 10px 0 6px;
+                position: relative;
+                z-index: 1;
+                min-height: 100px;
+            }
+            .bulb-wrapper {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 5px;
+                position: relative;
+            }
+
+            /* Wire */
+            .wire {
+                width: 2px;
+                height: 28px;
+                background: linear-gradient(to bottom, #555, #888, #aaa);
+                border-radius: 1px;
+                position: relative;
+            }
+            .wire::after {
+                content: "";
+                position: absolute;
+                bottom: -2px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 10px;
+                height: 6px;
+                background: #666;
+                border-radius: 2px 2px 4px 4px;
+            }
+
+            /* Bulb */
+            .bulb {
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                background: radial-gradient(
+                    circle at 40% 35%,
+                    #c0c0c8,
+                    #7a7a85 70%,
+                    #555560
+                );
+                position: relative;
+                transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1.2);
+                box-shadow:
+                    inset 0 -3px 6px rgba(0, 0, 0, 0.3),
+                    0 2px 4px rgba(0, 0, 0, 0.4);
+                cursor: default;
+            }
+            /* Bulb base */
+            .bulb::before {
+                content: "";
+                position: absolute;
+                top: -8px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 16px;
+                height: 10px;
+                background: #888;
+                border-radius: 3px 3px 2px 2px;
+                transition: background 0.4s ease;
+            }
+            /* Subtle reflection */
+            .bulb::after {
+                content: "";
+                position: absolute;
+                top: 6px;
+                left: 10px;
+                width: 10px;
+                height: 8px;
+                background: rgba(255, 255, 255, 0.25);
+                border-radius: 50%;
+                transition: all 0.4s ease;
+            }
+
+            /* Bulb ON state */
+            .bulb.bulb-on {
+                background: radial-gradient(
+                    circle at 40% 35%,
+                    #fffbe6,
+                    #ffd54f 30%,
+                    #ffa000 70%,
+                    #e68900
+                );
+                box-shadow:
+                    0 0 18px 6px rgba(255, 190, 40, 0.85),
+                    0 0 40px 14px rgba(255, 160, 20, 0.55),
+                    0 0 70px 28px rgba(255, 140, 10, 0.3),
+                    0 0 110px 45px rgba(255, 120, 5, 0.15),
+                    0 3px 8px rgba(0, 0, 0, 0.3);
+                animation: bulbPulse 2.5s ease-in-out infinite;
+            }
+            .bulb.bulb-on::before {
+                background: #d4a030;
+            }
+            .bulb.bulb-on::after {
+                background: rgba(255, 255, 255, 0.55);
+                width: 12px;
+                height: 10px;
+                top: 5px;
+                left: 9px;
+            }
+
+            @keyframes bulbPulse {
+                0%,
+                100% {
+                    box-shadow:
+                        0 0 18px 6px rgba(255, 190, 40, 0.85),
+                        0 0 40px 14px rgba(255, 160, 20, 0.55),
+                        0 0 70px 28px rgba(255, 140, 10, 0.3),
+                        0 0 110px 45px rgba(255, 120, 5, 0.15),
+                        0 3px 8px rgba(0, 0, 0, 0.3);
+                }
+                50% {
+                    box-shadow:
+                        0 0 24px 8px rgba(255, 200, 50, 0.9),
+                        0 0 48px 18px rgba(255, 170, 25, 0.6),
+                        0 0 78px 34px rgba(255, 145, 12, 0.35),
+                        0 0 120px 52px rgba(255, 125, 8, 0.18),
+                        0 3px 8px rgba(0, 0, 0, 0.3);
+                }
+            }
+
+            .bulb-label {
+                font-size: 0.7rem;
+                color: #8899aa;
+                letter-spacing: 0.5px;
+                text-align: center;
+                transition: color 0.4s ease;
+            }
+            .bulb.bulb-on + .bulb-label {
+                color: #ffcc80;
+            }
+
+            /* ===== TOGGLE SWITCH ===== */
+            .toggle-switch {
+                width: 48px;
+                height: 26px;
+                background: var(--switch-off);
+                border-radius: 13px;
+                position: relative;
+                cursor: pointer;
+                transition: all 0.35s ease;
+                box-shadow:
+                    inset 0 1px 3px rgba(0, 0, 0, 0.4),
+                    0 1px 2px rgba(0, 0, 0, 0.3);
+                flex-shrink: 0;
+            }
+            .toggle-switch::after {
+                content: "";
+                position: absolute;
+                top: 3px;
+                left: 3px;
+                width: 20px;
+                height: 20px;
+                background: #d5d5e0;
+                border-radius: 50%;
+                transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+            }
+            .toggle-switch.switch-on {
+                background: var(--switch-on);
+                box-shadow:
+                    inset 0 1px 3px rgba(0, 0, 0, 0.3),
+                    0 0 10px rgba(74, 222, 128, 0.4);
+            }
+            .toggle-switch.switch-on::after {
+                left: 25px;
+                background: #ffffff;
+                box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+            }
+            .toggle-switch:active::after {
+                width: 24px;
+            }
+
+            /* ===== INDIVIDUAL SWITCH ROW ===== */
+            .switch-row {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                justify-content: center;
+            }
+            .switch-mini-label {
+                font-size: 0.65rem;
+                color: #778899;
+                letter-spacing: 0.3px;
+            }
+
+            /* ===== GROUP SWITCH AREA ===== */
+            .group-switch-area {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 12px;
+                padding: 12px 16px;
+                background: rgba(255, 255, 255, 0.03);
+                border-radius: 30px;
+                position: relative;
+                z-index: 1;
+                border: 1px solid rgba(255, 255, 255, 0.06);
+                transition: all 0.5s ease;
+            }
+            .group-switch-area .group-label {
+                font-size: 0.85rem;
+                font-weight: 600;
+                color: #b0b8c8;
+                letter-spacing: 0.5px;
+                transition: color 0.4s ease;
+            }
+            .group-switch-area .toggle-switch {
+                width: 56px;
+                height: 30px;
+                border-radius: 15px;
+            }
+            .group-switch-area .toggle-switch::after {
+                width: 24px;
+                height: 24px;
+                top: 3px;
+                left: 3px;
+            }
+            .group-switch-area .toggle-switch.switch-on::after {
+                left: 29px;
+            }
+            .group-switch-area .toggle-switch:active::after {
+                width: 28px;
+            }
+            .group-switch-area.active-group {
+                background: rgba(255, 180, 40, 0.08);
+                border-color: rgba(255, 180, 40, 0.2);
+                box-shadow: 0 0 20px rgba(255, 150, 30, 0.1);
+            }
+            .group-switch-area.active-group .group-label {
+                color: #ffcc80;
+            }
+
+            /* ===== FOOTER INFO ===== */
+            .footer-info {
+                text-align: center;
+                margin-top: 28px;
+                color: #556677;
+                font-size: 0.8rem;
+                letter-spacing: 2px;
+            }
+            .footer-info span {
+                color: #ffb347;
+                font-weight: 600;
+            }
+
+            /* ===== PARTICLES (floating dust motes near lights) ===== */
+            @keyframes floatUp {
+                0% {
+                    transform: translateY(0) translateX(0) scale(1);
+                    opacity: 0.7;
+                }
+                50% {
+                    opacity: 0.3;
+                }
+                100% {
+                    transform: translateY(-50px) translateX(10px) scale(0.2);
+                    opacity: 0;
+                }
+            }
+            .particle {
+                position: absolute;
+                width: 3px;
+                height: 3px;
+                background: #ffd89b;
+                border-radius: 50%;
+                pointer-events: none;
+                animation: floatUp 2s ease-out infinite;
+                z-index: 3;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Moon -->
+        <div class="moon"></div>
+
+        <!-- Main Container -->
+        <div class="main-container">
+            <!-- Header -->
+            <header class="header">
+                <h1> Cetrak Cetrek Lampu </h1>
+                <p class="subtitle">Smart Home Lighting System</p>
+            </header>
+
+            <!-- Rooms Grid -->
+            <div class="rooms-grid">
+                <!-- ========== RUANG KELUARGA (3 Lampu) ========== -->
+                <div
+                    class="room-card keluarga"
+                    data-room="keluarga"
+                    id="room-keluarga"
+                >
+                    <div class="roof"></div>
+                    <div class="room-body">
+                        <h2 class="room-name">
+                            <span class="room-icon">️</span> Ruang Keluarga
+                        </h2>
+                        <div class="bulbs-area" id="bulbs-keluarga">
+                            <!-- Lampu 1 -->
+                            <div class="bulb-wrapper">
+                                <div class="wire"></div>
+                                <div
+                                    class="bulb"
+                                    id="bulb-0"
+                                    data-room="keluarga"
+                                    data-bulb="0"
+                                ></div>
+                                <span class="bulb-label">Lampu 1</span>
+                                <div class="switch-row">
+                                    <span class="switch-mini-label">OFF</span>
+                                    <div
+                                        class="toggle-switch individual-switch"
+                                        id="switch-0"
+                                        data-bulb="0"
+                                        data-room="keluarga"
+                                    ></div>
+                                    <span class="switch-mini-label">ON</span>
+                                </div>
+                            </div>
+                            <!-- Lampu 2 -->
+                            <div class="bulb-wrapper">
+                                <div class="wire"></div>
+                                <div
+                                    class="bulb"
+                                    id="bulb-1"
+                                    data-room="keluarga"
+                                    data-bulb="1"
+                                ></div>
+                                <span class="bulb-label">Lampu 2</span>
+                                <div class="switch-row">
+                                    <span class="switch-mini-label">OFF</span>
+                                    <div
+                                        class="toggle-switch individual-switch"
+                                        id="switch-1"
+                                        data-bulb="1"
+                                        data-room="keluarga"
+                                    ></div>
+                                    <span class="switch-mini-label">ON</span>
+                                </div>
+                            </div>
+                            <!-- Lampu 3 -->
+                            <div class="bulb-wrapper">
+                                <div class="wire"></div>
+                                <div
+                                    class="bulb"
+                                    id="bulb-2"
+                                    data-room="keluarga"
+                                    data-bulb="2"
+                                ></div>
+                                <span class="bulb-label">Lampu 3</span>
+                                <div class="switch-row">
+                                    <span class="switch-mini-label">OFF</span>
+                                    <div
+                                        class="toggle-switch individual-switch"
+                                        id="switch-2"
+                                        data-bulb="2"
+                                        data-room="keluarga"
+                                    ></div>
+                                    <span class="switch-mini-label">ON</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="group-switch-area" id="group-area-keluarga">
+                            <span class="group-label"> Saklar Ruangan</span>
+                            <div
+                                class="toggle-switch group-switch"
+                                id="group-keluarga"
+                                data-room="keluarga"
+                            ></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ========== RUANG MAKAN (1 Lampu) ========== -->
+                <div class="room-card makan" data-room="makan" id="room-makan">
+                    <div class="roof"></div>
+                    <div class="room-body">
+                        <h2 class="room-name">
+                            <span class="room-icon">️</span> Ruang Makan
+                        </h2>
+                        <div class="bulbs-area" id="bulbs-makan">
+                            <!-- Lampu 4 -->
+                            <div class="bulb-wrapper">
+                                <div class="wire"></div>
+                                <div
+                                    class="bulb"
+                                    id="bulb-3"
+                                    data-room="makan"
+                                    data-bulb="3"
+                                ></div>
+                                <span class="bulb-label">Lampu 4</span>
+                                <div class="switch-row">
+                                    <span class="switch-mini-label">OFF</span>
+                                    <div
+                                        class="toggle-switch individual-switch"
+                                        id="switch-3"
+                                        data-bulb="3"
+                                        data-room="makan"
+                                    ></div>
+                                    <span class="switch-mini-label">ON</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="group-switch-area" id="group-area-makan">
+                            <span class="group-label"> Saklar Ruangan</span>
+                            <div
+                                class="toggle-switch group-switch"
+                                id="group-makan"
+                                data-room="makan"
+                            ></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ========== RUANG TIDUR (2 Lampu) ========== -->
+                <div class="room-card tidur" data-room="tidur" id="room-tidur">
+                    <div class="roof"></div>
+                    <div class="room-body">
+                        <h2 class="room-name">
+                            <span class="room-icon">️</span> Ruang Tidur
+                        </h2>
+                        <div class="bulbs-area" id="bulbs-tidur">
+                            <!-- Lampu 5 -->
+                            <div class="bulb-wrapper">
+                                <div class="wire"></div>
+                                <div
+                                    class="bulb"
+                                    id="bulb-4"
+                                    data-room="tidur"
+                                    data-bulb="4"
+                                ></div>
+                                <span class="bulb-label">Lampu 5</span>
+                                <div class="switch-row">
+                                    <span class="switch-mini-label">OFF</span>
+                                    <div
+                                        class="toggle-switch individual-switch"
+                                        id="switch-4"
+                                        data-bulb="4"
+                                        data-room="tidur"
+                                    ></div>
+                                    <span class="switch-mini-label">ON</span>
+                                </div>
+                            </div>
+                            <!-- Lampu 6 -->
+                            <div class="bulb-wrapper">
+                                <div class="wire"></div>
+                                <div
+                                    class="bulb"
+                                    id="bulb-5"
+                                    data-room="tidur"
+                                    data-bulb="5"
+                                ></div>
+                                <span class="bulb-label">Lampu 6</span>
+                                <div class="switch-row">
+                                    <span class="switch-mini-label">OFF</span>
+                                    <div
+                                        class="toggle-switch individual-switch"
+                                        id="switch-5"
+                                        data-bulb="5"
+                                        data-room="tidur"
+                                    ></div>
+                                    <span class="switch-mini-label">ON</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="group-switch-area" id="group-area-tidur">
+                            <span class="group-label"> Saklar Ruangan</span>
+                            <div
+                                class="toggle-switch group-switch"
+                                id="group-tidur"
+                                data-room="tidur"
+                            ></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ========== RUANG TAMU (4 Lampu) ========== -->
+                <div class="room-card tamu" data-room="tamu" id="room-tamu">
+                    <div class="roof"></div>
+                    <div class="room-body">
+                        <h2 class="room-name">
+                            <span class="room-icon">️</span> Ruang Tamu
+                        </h2>
+                        <div class="bulbs-area" id="bulbs-tamu">
+                            <!-- Lampu 7 -->
+                            <div class="bulb-wrapper">
+                                <div class="wire"></div>
+                                <div
+                                    class="bulb"
+                                    id="bulb-6"
+                                    data-room="tamu"
+                                    data-bulb="6"
+                                ></div>
+                                <span class="bulb-label">Lampu 7</span>
+                                <div class="switch-row">
+                                    <span class="switch-mini-label">OFF</span>
+                                    <div
+                                        class="toggle-switch individual-switch"
+                                        id="switch-6"
+                                        data-bulb="6"
+                                        data-room="tamu"
+                                    ></div>
+                                    <span class="switch-mini-label">ON</span>
+                                </div>
+                            </div>
+                            <!-- Lampu 8 -->
+                            <div class="bulb-wrapper">
+                                <div class="wire"></div>
+                                <div
+                                    class="bulb"
+                                    id="bulb-7"
+                                    data-room="tamu"
+                                    data-bulb="7"
+                                ></div>
+                                <span class="bulb-label">Lampu 8</span>
+                                <div class="switch-row">
+                                    <span class="switch-mini-label">OFF</span>
+                                    <div
+                                        class="toggle-switch individual-switch"
+                                        id="switch-7"
+                                        data-bulb="7"
+                                        data-room="tamu"
+                                    ></div>
+                                    <span class="switch-mini-label">ON</span>
+                                </div>
+                            </div>
+                            <!-- Lampu 9 -->
+                            <div class="bulb-wrapper">
+                                <div class="wire"></div>
+                                <div
+                                    class="bulb"
+                                    id="bulb-8"
+                                    data-room="tamu"
+                                    data-bulb="8"
+                                ></div>
+                                <span class="bulb-label">Lampu 9</span>
+                                <div class="switch-row">
+                                    <span class="switch-mini-label">OFF</span>
+                                    <div
+                                        class="toggle-switch individual-switch"
+                                        id="switch-8"
+                                        data-bulb="8"
+                                        data-room="tamu"
+                                    ></div>
+                                    <span class="switch-mini-label">ON</span>
+                                </div>
+                            </div>
+                            <!-- Lampu 10 -->
+                            <div class="bulb-wrapper">
+                                <div class="wire"></div>
+                                <div
+                                    class="bulb"
+                                    id="bulb-9"
+                                    data-room="tamu"
+                                    data-bulb="9"
+                                ></div>
+                                <span class="bulb-label">Lampu 10</span>
+                                <div class="switch-row">
+                                    <span class="switch-mini-label">OFF</span>
+                                    <div
+                                        class="toggle-switch individual-switch"
+                                        id="switch-9"
+                                        data-bulb="9"
+                                        data-room="tamu"
+                                    ></div>
+                                    <span class="switch-mini-label">ON</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="group-switch-area" id="group-area-tamu">
+                            <span class="group-label"> Saklar Ruangan</span>
+                            <div
+                                class="toggle-switch group-switch"
+                                id="group-tamu"
+                                data-room="tamu"
+                            ></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /rooms-grid -->
+
+            <!-- Footer -->
+            <p class="footer-info">
+                 Total: <span>10 Lampu</span> &nbsp;|&nbsp; 
+                <span>4 Ruangan</span> &nbsp;|&nbsp; 
+                <span>14 Saklar</span> &nbsp;|&nbsp; Klik saklar untuk
+                menyalakan/mematikan lampu
+            </p>
+        </div>
+
+        <script>
+            (function () {
+                // ========== DOM REFERENCES ==========
+                const allBulbs = document.querySelectorAll(".bulb");
+                const allIndividualSwitches =
+                    document.querySelectorAll(".individual-switch");
+                const allGroupSwitches =
+                    document.querySelectorAll(".group-switch");
+                const allGroupAreas =
+                    document.querySelectorAll(".group-switch-area");
+                const allRoomCards = document.querySelectorAll(".room-card");
+
+                // Build lookup maps
+                const bulbMap = {}; // bulbId (0-9) -> bulb DOM element
+                const switchMap = {}; // bulbId (0-9) -> individual switch DOM element
+                const roomBulbsMap = {}; // roomName -> [bulbId, bulbId, ...]
+                const roomGroupSwitchMap = {}; // roomName -> group switch DOM element
+                const roomGroupAreaMap = {}; // roomName -> group switch area DOM element
+                const roomCardMap = {}; // roomName -> room card DOM element
+
+                allBulbs.forEach(bulb => {
+                    const bulbId = parseInt(bulb.getAttribute("data-bulb"));
+                    const room = bulb.getAttribute("data-room");
+                    bulbMap[bulbId] = bulb;
+                    if (!roomBulbsMap[room]) roomBulbsMap[room] = [];
+                    roomBulbsMap[room].push(bulbId);
+                });
+
+                allIndividualSwitches.forEach(sw => {
+                    const bulbId = parseInt(sw.getAttribute("data-bulb"));
+                    switchMap[bulbId] = sw;
+                });
+
+                allGroupSwitches.forEach(sw => {
+                    const room = sw.getAttribute("data-room");
+                    roomGroupSwitchMap[room] = sw;
+                });
+
+                allGroupAreas.forEach(area => {
+                    const room = area.id.replace("group-area-", "");
+                    roomGroupAreaMap[room] = area;
+                });
+
+                allRoomCards.forEach(card => {
+                    const room = card.getAttribute("data-room");
+                    roomCardMap[room] = card;
+                });
+
+                // ========== STATE MANAGEMENT ==========
+                // Get bulb state (true = ON, false = OFF)
+                function isBulbOn(bulbId) {
+                    return bulbMap[bulbId].classList.contains("bulb-on");
+                }
+
+                // Set bulb state
+                function setBulbState(bulbId, state) {
+                    const bulb = bulbMap[bulbId];
+                    const sw = switchMap[bulbId];
+                    if (state) {
+                        bulb.classList.add("bulb-on");
+                        sw.classList.add("switch-on");
+                    } else {
+                        bulb.classList.remove("bulb-on");
+                        sw.classList.remove("switch-on");
+                    }
+                    // Spawn particles when turning on
+                    if (state) {
+                        spawnParticles(bulb);
+                    }
+                }
+
+                // Toggle single bulb
+                function toggleBulb(bulbId) {
+                    const newState = !isBulbOn(bulbId);
+                    setBulbState(bulbId, newState);
+                    const room = bulbMap[bulbId].getAttribute("data-room");
+                    updateGroupSwitchState(room);
+                    updateRoomLighting(room);
+                }
+
+                // Get all bulb IDs for a room
+                function getRoomBulbIds(room) {
+                    return roomBulbsMap[room] || [];
+                }
+
+                // Check if all bulbs in a room are ON
+                function areAllBulbsOnInRoom(room) {
+                    const bulbIds = getRoomBulbIds(room);
+                    return bulbIds.every(id => isBulbOn(id));
+                }
+
+                // Check if ANY bulb in a room is ON
+                function isAnyBulbOnInRoom(room) {
+                    const bulbIds = getRoomBulbIds(room);
+                    return bulbIds.some(id => isBulbOn(id));
+                }
+
+                // Update group switch visual based on room's bulb states
+                function updateGroupSwitchState(room) {
+                    const groupSw = roomGroupSwitchMap[room];
+                    const groupArea = roomGroupAreaMap[room];
+                    const allOn = areAllBulbsOnInRoom(room);
+                    const anyOn = isAnyBulbOnInRoom(room);
+
+                    if (allOn) {
+                        groupSw.classList.add("switch-on");
+                    } else {
+                        groupSw.classList.remove("switch-on");
+                    }
+
+                    // Update group area highlight
+                    if (anyOn) {
+                        groupArea.classList.add("active-group");
+                    } else {
+                        groupArea.classList.remove("active-group");
+                    }
+                }
+
+                // Update room card lighting class
+                function updateRoomLighting(room) {
+                    const card = roomCardMap[room];
+                    const anyOn = isAnyBulbOnInRoom(room);
+                    if (anyOn) {
+                        card.classList.add("has-light");
+                    } else {
+                        card.classList.remove("has-light");
+                    }
+                }
+
+                // Set all bulbs in a room
+                function setAllBulbsInRoom(room, state) {
+                    const bulbIds = getRoomBulbIds(room);
+                    bulbIds.forEach(id => setBulbState(id, state));
+                    updateGroupSwitchState(room);
+                    updateRoomLighting(room);
+                }
+
+                // Toggle entire room
+                function toggleRoom(room) {
+                    const anyOn = isAnyBulbOnInRoom(room);
+                    // If any bulb is on, turn all off. If all off, turn all on.
+                    const newState = !anyOn;
+                    setAllBulbsInRoom(room, newState);
+                }
+
+                // ========== PARTICLE EFFECTS ==========
+                function spawnParticles(bulb) {
+                    const rect = bulb.getBoundingClientRect();
+                    const centerX = rect.left + rect.width / 2;
+                    const centerY = rect.top + rect.height / 2;
+                    const count = 8;
+
+                    for (let i = 0; i < count; i++) {
+                        const particle = document.createElement("div");
+                        particle.classList.add("particle");
+                        particle.style.left =
+                            centerX + (Math.random() - 0.5) * 30 + "px";
+                        particle.style.top =
+                            centerY + (Math.random() - 0.5) * 20 + "px";
+                        particle.style.width = 2 + Math.random() * 3 + "px";
+                        particle.style.height = particle.style.width;
+                        particle.style.animationDuration =
+                            1.2 + Math.random() * 2 + "s";
+                        particle.style.animationDelay =
+                            Math.random() * 0.3 + "s";
+                        particle.style.position = "fixed";
+                        document.body.appendChild(particle);
+
+                        // Clean up after animation
+                        setTimeout(() => {
+                            if (particle.parentNode) {
+                                particle.parentNode.removeChild(particle);
+                            }
+                        }, 2500);
+                    }
+                }
+
+                // ========== EVENT LISTENERS ==========
+                // Individual switches
+                allIndividualSwitches.forEach(sw => {
+                    sw.addEventListener("click", function (e) {
+                        e.stopPropagation();
+                        const bulbId = parseInt(this.getAttribute("data-bulb"));
+                        toggleBulb(bulbId);
+                    });
+                });
+
+                // Group switches
+                allGroupSwitches.forEach(sw => {
+                    sw.addEventListener("click", function (e) {
+                        e.stopPropagation();
+                        const room = this.getAttribute("data-room");
+                        toggleRoom(room);
+                    });
+                });
+
+                // Also allow clicking on bulbs directly to toggle
+                allBulbs.forEach(bulb => {
+                    bulb.style.cursor = "pointer";
+                    bulb.addEventListener("click", function (e) {
+                        e.stopPropagation();
+                        const bulbId = parseInt(this.getAttribute("data-bulb"));
+                        toggleBulb(bulbId);
+                    });
+                });
+
+                // ========== INITIAL STATE ==========
+                // All bulbs start OFF (default)
+                function initializeAll() {
+                    const allRooms = ["keluarga", "makan", "tidur", "tamu"];
+                    allRooms.forEach(room => {
+                        updateGroupSwitchState(room);
+                        updateRoomLighting(room);
+                    });
+                }
+                initializeAll();
+
+                // ========== KEYBOARD SHORTCUTS (Bonus) ==========
+                document.addEventListener("keydown", function (e) {
+                    // Press 'A' to toggle all lights
+                    if (e.key === "a" || e.key === "A") {
+                        const allRooms = ["keluarga", "makan", "tidur", "tamu"];
+                        const anyOnOverall = allRooms.some(room =>
+                            isAnyBulbOnInRoom(room)
+                        );
+                        allRooms.forEach(room =>
+                            setAllBulbsInRoom(room, !anyOnOverall)
+                        );
+                    }
+                    // Press number keys 1-4 for room toggles
+                    const roomKeys = {
+                        1: "keluarga",
+                        2: "makan",
+                        3: "tidur",
+                        4: "tamu"
+                    };
+                    if (roomKeys[e.key]) {
+                        toggleRoom(roomKeys[e.key]);
+                    }
+                });
+
+                console.log("Cetrak Cetrek Lampu - Smart Home Ready!");
+                console.log("    10 Lampu |  4 Ruangan |  14 Saklar");
+                console.log(
+                    "   ️  Klik saklar atau bohlam untuk menyalakan/mematikan"
+                );
+                console.log("   ⌨  Tekan A untuk toggle semua lampu");
+                console.log("   ⌨  Tekan 1-4 untuk toggle per ruangan");
+            })();
+        </script>
+    </body>
 </html>
